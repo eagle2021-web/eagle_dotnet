@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Documents;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-
+using System.Net;
+using System.IO;
 namespace WpfApplication1
 {
     /// <summary>
@@ -20,6 +20,46 @@ namespace WpfApplication1
             InitializeComponent();
         }
 
+        public async static void SendHttpRequest()
+        {
+            // 设置请求的URI
+            string requestUri = "https://www.2345.com/?39895-0003";
+
+            try
+            {
+                // 创建WebRequest实例
+                WebRequest request = WebRequest.Create(requestUri);
+            
+                // 如果需要，设置请求的方法
+                request.Method = "GET";
+            
+                // 获取响应
+                using (WebResponse response = request.GetResponse())
+                {
+                    // 打开响应流
+                    using (Stream stream = response.GetResponseStream())
+                    {
+                        // 读取响应内容
+                        StreamReader reader = new StreamReader(stream);
+                        string responseText = reader.ReadToEnd();
+                    
+                        // 打印响应内容
+                        Console.WriteLine(responseText);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // 处理请求过程中发生的异常
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message: {0}", e.Message);
+            }
+        }
+
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            SendHttpRequest();
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 

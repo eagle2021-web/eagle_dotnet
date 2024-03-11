@@ -36,6 +36,8 @@
         </ScrollViewer>
         <Button x:Name="copyButtonGav" Content="复制" Height="23" Margin="215,80,0,0" VerticalAlignment="Top"
                 HorizontalAlignment="Left" Width="75" Click="CopyButton_Click_Gav" />
+        <Button x:Name="SendButton" Content="测试发送" Height="23" Margin="10,160,0,0" VerticalAlignment="Top"
+                HorizontalAlignment="Left" Width="75" Click="SendButton_Click" />
         <StackPanel x:Name="stackPanelForButtons" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,10,0,0"/>
     </Grid>
-</Window>
+</Window> 
