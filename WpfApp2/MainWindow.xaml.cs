@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-
+using System.Net.Http;
 namespace WpfApp2;
 
 /// <summary>
@@ -18,39 +18,59 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    public static async void SendHttpRequest()
+    public static async Task SendHttpRequest()
     {
         // 设置请求的URI
-        var requestUri = "https://www.2345.com/?39895-0003";
+        var requestUri = "https://www.baidu.com/";
 
-        try
+        var httpClientHandler = new HttpClientHandler()
         {
-            // 创建WebRequest实例
-            var request = WebRequest.Create(requestUri);
+            UseProxy = false
+        };
 
-            // 如果需要，设置请求的方法
-            request.Method = "GET";
-
-            // 获取响应
-            using (var response = request.GetResponse())
+        // 使用自定义的HttpClientHandler初始化HttpClient
+        using (var httpClient = new HttpClient(httpClientHandler))
+        {
+            try
             {
-                // 打开响应流
-                using (var stream = response.GetResponseStream())
-                {
-                    // 读取响应内容
-                    var reader = new StreamReader(stream);
-                    var responseText = reader.ReadToEnd();
+                // 模拟浏览器的User-Agent
+                httpClient.DefaultRequestHeaders
+                    .UserAgent
+                    .ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                              "Chrome/58.0.3029.110 Safari/537.3");
+            
+                // 设置接受的内容类型
+                httpClient.DefaultRequestHeaders.Accept.ParseAdd("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+            
+                // 设置接受的语言
+                httpClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd("en-US,en;q=0.5");
+                // 发送GET请求
+                var response = await httpClient.GetAsync(requestUri);
 
-                    // 打印响应内容
-                    Console.WriteLine(responseText);
-                }
+                // 确保HTTP成功状态码
+                response.EnsureSuccessStatusCode();
+
+                // 读取响应内容
+                var responseText = await response.Content.ReadAsStringAsync();
+
+                // 写入文件
+                var filePath = "response.txt"; // 定义文件路径
+                File.WriteAllText(filePath, responseText); // 将响应内容写入文件
+
+                Console.WriteLine("Response content has been written to file: " + filePath);
             }
-        }
-        catch (Exception e)
-        {
-            // 处理请求过程中发生的异常
-            Console.WriteLine("\nException Caught!");
-            Console.WriteLine("Message: {0}", e.Message);
+            catch (HttpRequestException e)
+            {
+                // 处理请求过程中发生的异常
+                Console.WriteLine("\nHttpRequestException Caught!");
+                Console.WriteLine("Message: {0}", e.Message);
+            }
+            catch (Exception e)
+            {
+                // 处理其他类型的异常
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message: {0}", e.Message);
+            }
         }
     }
 

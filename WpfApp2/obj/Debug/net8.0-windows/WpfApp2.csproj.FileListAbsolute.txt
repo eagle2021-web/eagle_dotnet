@@ -17,3 +17,9 @@ D:\projects\dotnet\eagle_dotnet_core\WpfApp2\obj\Debug\net8.0-windows\refint\Wpf
 D:\projects\dotnet\eagle_dotnet_core\WpfApp2\obj\Debug\net8.0-windows\WpfApp2.pdb
 D:\projects\dotnet\eagle_dotnet_core\WpfApp2\obj\Debug\net8.0-windows\WpfApp2.genruntimeconfig.cache
 D:\projects\dotnet\eagle_dotnet_core\WpfApp2\obj\Debug\net8.0-windows\ref\WpfApp2.dll
+D:\projects\dotnet\eagle_dotnet_core\WpfApp2\bin\Debug\net8.0-windows\FubarCoder.RestSharp.Portable.Core.dll
+D:\projects\dotnet\eagle_dotnet_core\WpfApp2\bin\Debug\net8.0-windows\FubarCoder.RestSharp.Portable.HttpClient.dll
+D:\projects\dotnet\eagle_dotnet_core\WpfApp2\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+D:\projects\dotnet\eagle_dotnet_core\WpfApp2\obj\Debug\net8.0-windows\WpfApp2.csproj.AssemblyReference.cache
+D:\projects\dotnet\eagle_dotnet_core\WpfApp2\obj\Debug\net8.0-windows\WpfApp2.sourcelink.json
+D:\projects\dotnet\eagle_dotnet_core\WpfApp2\obj\Debug\net8.0-windows\WpfApp2.csproj.Up2Date
